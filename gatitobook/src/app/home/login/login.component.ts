@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AutenticacaoService } from 'src/app/autenticacao/autenticacao.service';
 
 @Component({
@@ -6,18 +7,27 @@ import { AutenticacaoService } from 'src/app/autenticacao/autenticacao.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  usuario: string = "";
-  senha: string = "";
+export class LoginComponent implements OnInit {
 
-  constructor(private authService: AutenticacaoService) { }
+  usuario = "";
+  senha = "";
 
-  ngOnInit(): void { }
+  constructor(private authService: AutenticacaoService, private router: Router) { }
+
+  ngOnInit(): void {
+
+  }
 
   login() {
+    debugger
     this.authService.autentica(this.usuario, this.senha).subscribe({
-      complete: () => { },
-      error: () => { }
+      complete: () => {
+
+        this.router.navigate(['animais'])
+      },
+      error: (e) => {
+        alert(JSON.stringify(e))
+      }
     }
     )
   }

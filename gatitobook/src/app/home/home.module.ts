@@ -5,19 +5,24 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MensagemModule } from "../componentes/mensagem/mensagem.module";
+import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    NovoUsuarioComponent
   ],
+  exports: [HomeComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    FormsModule
-  ],
-  exports: [HomeComponent]
+    FormsModule,
+    MensagemModule,
+    ReactiveFormsModule
+  ]
 })
 export class HomeModule { }
