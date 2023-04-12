@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    debugger
     this.authService.autentica(this.usuario, this.senha).subscribe({
       complete: () => {
 
