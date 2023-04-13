@@ -3,6 +3,10 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { UsuarioService } from './usuario/usuario.service';
+import { environment } from 'src/environments/environment.development';
+
+const API = environment.apiURL;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -10,12 +14,12 @@ export class AutenticacaoService {
   constructor(
     private httpClient: HttpClient,
     private usuarioService: UsuarioService
-  ) { }
+  ) {}
 
   autentica(usuario: string, senha: string): Observable<HttpResponse<any>> {
     return this.httpClient
       .post(
-        'http://localhost:3000/user/login',
+        `${API}/user/login`,
         {
           userName: usuario,
           password: senha,

@@ -5,15 +5,14 @@ import { Usuario } from './usuario';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuarioService {
-
-  private usuarioSubject = new BehaviorSubject<Usuario>({})
+  private usuarioSubject = new BehaviorSubject<Usuario>({});
 
   constructor(private tokenService: TokenService) {
     if (this.tokenService.possuiToken()) {
-      this.decodificarJWT()
+      this.decodificarJWT();
     }
   }
 
@@ -29,16 +28,15 @@ export class UsuarioService {
 
   salvarToken(token: string) {
     this.tokenService.salvaToken(token);
-    this.decodificarJWT()
+    this.decodificarJWT();
   }
 
   logout() {
     this.tokenService.excluirToken();
-    this.usuarioSubject.next({})
+    this.usuarioSubject.next({});
   }
 
   estaLogado() {
-    return this.tokenService.possuiToken()
+    return this.tokenService.possuiToken();
   }
-
 }
